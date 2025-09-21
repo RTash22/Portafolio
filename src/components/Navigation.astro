@@ -1,0 +1,57 @@
+---
+const navItems = [
+  { name: 'Home', href: '#' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
+];
+---
+
+<nav class="fixed w-full z-50 bg-white bg-opacity-70 dark:bg-gray-900 dark:bg-opacity-70 backdrop-blur-lg">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="#" class="text-2xl font-bold text-purple-600">YN</a>
+      
+      <div class="hidden md:flex space-x-8">
+        {navItems.map(item => (
+          <a 
+            href={item.href}
+            class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+
+      <button 
+        id="mobile-menu-button"
+        class="md:hidden text-gray-700 dark:text-gray-300 hover:text-purple-600"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 pb-4">
+    {navItems.map(item => (
+      <a 
+        href={item.href}
+        class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+      >
+        {item.name}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>
